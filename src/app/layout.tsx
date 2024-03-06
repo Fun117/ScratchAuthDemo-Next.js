@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 	description: "Scratch Auth is a simple OAuth service for Scratch. It provides a straightforward API for developers, and a smooth login experience for end users.",
 
 	generator: "Next.js",
-	metadataBase: new URL('https:/scratch-auth-demo-ts.vercel.app'),
+	metadataBase: new URL('https:/scratch-auth-demo-nextjs.vercel.app'),
 
 	// manifest: "/webmanifest.json",
 
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
 	applicationName: "Scratch Auth Demo for Next.js",
 	openGraph: {
 		type: "website",
-		url: "https://scratch-auth-demo-ts.vercel.app/",
+		url: "https://scratch-auth-demo-nextjs.vercel.app/",
 		title: "Scratch Auth Demo for Next.js",
 		description: "Scratch Auth is a simple OAuth service for Scratch. It provides a straightforward API for developers, and a smooth login experience for end users.",
 		siteName: "Scratch Auth Demo for Next.js",
 	},
 
-	bookmarks: "https://scratch-auth-demo-ts.vercel.app/"
+	bookmarks: "https://scratch-auth-demo-nextjs.vercel.app/"
 };
 
 export default function RootLayout({
