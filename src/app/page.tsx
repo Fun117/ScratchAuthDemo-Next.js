@@ -21,7 +21,9 @@ export default function Home() {
                     setUsername(storedUsername);
                     if (storedUsername) {
                         const userData = await ScratchAuthGET_UserProfile(storedUsername);
-                        userData.profile.bio = userData.profile.bio.replace(/\n/g, '<br>');
+                        if(userData.profile.bio){
+                            userData.profile.bio = userData.profile.bio.replace(/\n/g, '<br>');
+                        }
                         setUserData(userData);
                     } else {}
                 }
@@ -52,7 +54,7 @@ export default function Home() {
                             </div>
                             <div className='flex flex-col rounded-md bg-neutral-200 w-full break-all'>
                                 <h3 className='rounded-t-md bg-neutral-500 text-neutral-300 p-2'>{_locales('About me')}</h3>
-                                <p className='overflow-scroll text-neutral-600 p-3' dangerouslySetInnerHTML={{ __html: userData.profile.bio }}></p>
+                                <p className='overflow-scroll text-neutral-600 p-3' dangerouslySetInnerHTML={{ __html: userData.profile.bio ? userData.profile.bio: '' }}></p>
                             </div>
                             <div>
                                 <button className='w-full px-3 py-2 text-neutral-100 bg-orange-400 border border-slate-300 rounded-md text-sm shadow-sm hover:bg-orange-500 active:opacity-50 active:scale-95 transition ease-in-out duration-300' onClick={() => logout()}>{_locales('Logout')}</button>
