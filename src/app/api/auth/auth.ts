@@ -2,6 +2,7 @@
 
 'use server';
 
+import crypto from 'crypto';
 import { links_config } from "../../../../public/assets/links";
 
 export async function ScratchAuth_verifyToken(privateCode: string): Promise<any> {

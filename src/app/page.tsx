@@ -7,6 +7,7 @@ import Loading from '@/components/element/loading';
 import { ScratchAuthGET_UserProfile } from '@/components/api/scratchAuth';
 import { _locales } from '@/components/site/_locales';
 import { links_config } from '../../public/assets/links';
+import { eraseCookie, eraseEncryptedUsername, getDecryptedSessionId, setEncryptedSessionId } from '@/components/api/cookie';
 
 export default function Home() {
     const [isLangLoaded, setPageLoaded] = useState(false);
@@ -17,7 +18,7 @@ export default function Home() {
         const fetchUserData = async () => {
             try {
                 if (typeof window !== 'undefined') {
-                    const storedUsername = sessionStorage.getItem('username');
+                    const storedUsername = getDecryptedSessionId('username');
                     setUsername(storedUsername);
                     if (storedUsername) {
                         const userData = await ScratchAuthGET_UserProfile(storedUsername);
@@ -25,7 +26,9 @@ export default function Home() {
                             userData.profile.bio = userData.profile.bio.replace(/\n/g, '<br>');
                         }
                         setUserData(userData);
-                    } else {}
+                    } else {
+                        //
+                    }
                 }
                 setPageLoaded(true);
             } catch (error) {
@@ -49,7 +52,7 @@ export default function Home() {
                     <>
                         <div className='bg-neutral-300 flex flex-col justify-center items-center gap-4 rounded-lg max-w-[500px] w-full p-5'>
                             <div className='flex flex-col gap-2'>
-                                <img src={userData.profile.images['90x90']} alt={`${username} icon`} className='rounded-full' />
+                                <img src={userData.profile.images['90x90']} alt={`${username} icon`} className='rounded-full w-[90px] h-[90px]' />
                                 <h1 className='font-bold text-2xl text-center'>{username}</h1>
                             </div>
                             <div className='flex flex-col rounded-md bg-neutral-200 w-full break-all'>
@@ -65,7 +68,7 @@ export default function Home() {
                     <>
                         <div className='bg-neutral-300 flex flex-col justify-center items-center gap-4 rounded-lg max-w-[500px] w-full p-5'>
                             <div className='flex flex-col gap-2'>
-                                <img src={`/assets/img/scratch/scratch_guest.png`} alt={`${_locales('About me')} icon`} className='rounded-full' />
+                                <img src={`/assets/img/scratch/scratch_guest.png`} alt={`${_locales('About me')} icon`} className='rounded-full w-[90px] h-[90px]' />
                                 <h1 className='font-bold text-2xl text-center'>{_locales('Guest')}</h1>
                             </div>
                             <div>
@@ -83,7 +86,7 @@ export default function Home() {
 const redirectToAuth = () => {
     const redirectLocation = btoa(`${links_config.site_origin}/api/auth`); // Base64 encoded
 
-    const username = sessionStorage.getItem('username');
+    const username = getDecryptedSessionId('username');
     if (username) {
     } else {
         window.location.href = `https://auth.itinerary.eu.org/auth/?redirect=${redirectLocation}&name=${links_config.site_title}`;
@@ -92,6 +95,8 @@ const redirectToAuth = () => {
 
 const logout = () => {
     // remove the session
-    sessionStorage.removeItem('username');
+
+    eraseEncryptedUsername('username');
+
     window.location.href = `/`;
 };
