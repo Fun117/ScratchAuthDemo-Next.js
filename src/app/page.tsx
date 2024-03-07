@@ -20,6 +20,7 @@ export default function Home() {
                 if (typeof window !== 'undefined') {
                     const storedUsername = getDecryptedSessionId('username');
                     setUsername(storedUsername);
+                    console.log(storedUsername);
                     if (storedUsername) {
                         const userData = await ScratchAuthGET_UserProfile(storedUsername);
                         if(userData.profile.bio){
