@@ -1,4 +1,16 @@
-# Scratch OAuth made easy
+<h1 align="center">
+    Scratch Auth
+    <div>
+        <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/fun117/ScratchAuthDemo-Next.js">
+        <img alt="GitHub forks" src="https://img.shields.io/github/forks/fun117/ScratchAuthDemo-Next.js">
+        <img alt="GitHub watchers" src="https://img.shields.io/github/watchers/fun117/ScratchAuthDemo-Next.js">
+        <img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues/fun117/ScratchAuthDemo-Next.js">
+        <img alt="GitHub License" src="https://img.shields.io/github/license/fun117/ScratchAuthDemo-Next.js">
+    </div>
+</h1>
+
+
+### Scratch OAuth made easy
 
 Scratch Auth comes with a simple API, is fully customizable, and looks fantastic!
 
